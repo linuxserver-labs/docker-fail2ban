@@ -5,6 +5,9 @@
 
 [DEFAULT]
 
+# Changes the default ban action from "iptables-multiport", which causes issues on some platforms, to "iptables-allports".
+banaction = iptables-allports
+
 # "bantime" is the number of seconds that a host is banned.
 bantime  = 600
 
