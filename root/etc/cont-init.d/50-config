@@ -40,12 +40,6 @@ cp /config/fail2ban/jail.local /etc/fail2ban/jail.local
 rm /etc/crontabs/*
 cp /config/crontabs/* /etc/crontabs/
 
-# logfiles needed by fail2ban
-#[[ ! -f /config/log/nginx/error.log ]] && \
-#  touch /config/log/nginx/error.log
-#[[ ! -f /config/log/nginx/access.log ]] && \
-#  touch /config/log/nginx/access.log
-
 # permissions
 chown -R abc:abc \
   /config
