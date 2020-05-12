@@ -52,3 +52,19 @@ enabled  = false
 port     = http,https
 filter   = nginx-botsearch
 logpath  = /config/log/nginx/access.log
+
+
+[nginx-deny]
+
+enabled  = false
+port     = http,https
+filter   = nginx-deny
+logpath  = /config/log/nginx/error.log
+
+
+[emby-http-auth]
+
+enabled  = false
+port     = 8920
+filter   = emby-http-auth
+logpath = /config/log/emby/embyserver.txt
