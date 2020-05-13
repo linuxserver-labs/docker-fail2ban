@@ -34,7 +34,7 @@ enabled = false
 enabled  = false
 filter   = nginx-http-auth
 port     = http,https
-logpath  = /config/log/nginx/error.log
+logpath  = /remotelog/nginx/error.log
 
 
 [nginx-badbots]
@@ -42,7 +42,7 @@ logpath  = /config/log/nginx/error.log
 enabled  = false
 port     = http,https
 filter   = nginx-badbots
-logpath  = /config/log/nginx/access.log
+logpath  = /remotelog/nginx/access.log
 maxretry = 2
 
 
@@ -51,7 +51,7 @@ maxretry = 2
 enabled  = false
 port     = http,https
 filter   = nginx-botsearch
-logpath  = /config/log/nginx/access.log
+logpath  = /remotelog/nginx/access.log
 
 
 [nginx-deny]
@@ -59,7 +59,7 @@ logpath  = /config/log/nginx/access.log
 enabled  = false
 port     = http,https
 filter   = nginx-deny
-logpath  = /config/log/nginx/error.log
+logpath  = /remotelog/nginx/error.log
 
 
 [emby-http-auth]
@@ -67,4 +67,4 @@ logpath  = /config/log/nginx/error.log
 enabled  = false
 port     = 8920
 filter   = emby-http-auth
-logpath = /config/log/emby/embyserver.txt
+logpath  = /remotelog/emby/embyserver.txt
