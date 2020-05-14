@@ -29,14 +29,6 @@ ignoreip = 127.0.0.1 172.16.0.0/12 192.168.0.0/16 10.0.0.0/8
 enabled = false
 
 
-[nginx-http-auth]
-
-enabled  = false
-filter   = nginx-http-auth
-port     = http,https
-logpath  = /remotelog/nginx/error.log
-
-
 [nginx-badbots]
 
 enabled  = false
@@ -54,6 +46,24 @@ filter   = nginx-botsearch
 logpath  = /remotelog/nginx/access.log
 
 
+[nginx-http-418]
+
+enabled  = false
+port     = http,https
+filter   = nginx-http-418
+logpath  = /remotelog/nginx/access.log
+findtime = 3600
+maxretry = 10
+
+
+[nginx-http-auth]
+
+enabled  = false
+filter   = nginx-http-auth
+port     = http,https
+logpath  = /remotelog/nginx/error.log
+
+
 [nginx-deny]
 
 enabled  = false
@@ -68,13 +78,3 @@ enabled  = false
 port     = 8920
 filter   = emby-http-auth
 logpath  = /remotelog/emby/embyserver.txt
-
-
-[nginx-http-418]
-
-enabled  = false
-port     = http,https
-filter   = nginx-http-418
-logpath  = /remotelog/nginx/access.log
-findtime = 3600
-maxretry = 10
