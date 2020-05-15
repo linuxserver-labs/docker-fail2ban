@@ -27,12 +27,6 @@ enabled  = false
 logpath  = /remotelog/nginx/access.log
 
 
-[nginx-http-botsearch]
-
-enabled  = false
-logpath  = /remotelog/nginx/access.log
-
-
 [nginx-http-418]
 
 enabled  = false
