@@ -21,13 +21,13 @@
 [DEFAULT]
 
 
-[nginx-badbots]
+[nginx-http-badbots]
 
 enabled  = true
 logpath  = /remotelog/nginx/access.log
 
 
-[nginx-botsearch]
+[nginx-http-botsearch]
 
 enabled  = true
 logpath  = /remotelog/nginx/access.log
@@ -45,7 +45,7 @@ enabled  = true
 logpath  = /remotelog/nginx/error.log
 
 
-[nginx-deny]
+[nginx-http-deny]
 
 enabled  = true
 logpath  = /remotelog/nginx/error.log
