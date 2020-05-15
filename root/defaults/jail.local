@@ -1,80 +1,63 @@
-# This is the custom version of the jail.conf for fail2ban
-# Feel free to modify this and add additional filters
-# Then you can drop the new filter conf files into the fail2ban-filters
-# folder and restart the container
+# This is the user servicable jail.local configuraiton file for fail2ban.
+#
+# This file compliments the read only linuxserver.io maintained default
+# jail.d/jail.conf and any service specific configurations jail.d/*.conf.
+#
+# Changes in this file will automatically merge with jail.d/*.conf on restart.
+#
+# Only unique changes need made to this file. You do not need to duplicate
+# settings you do not plan to alter.
+#
+# On restart fail2ban will merge in order:
+#     fail2ban default settings
+#     linuxserver.io container specific changes
+#     user customisations made here
+#
+# Before enabling any jails it is critcal that you examine each log file
+# to ensure the correct source IP addresses are showing.
+# For example it is not unusual for a reverse proxy IP to be logged rather
+# than the true user source IP. Do not enable a jail until this is remedied.
 
 [DEFAULT]
 
-# Changes the default ban action from "iptables-multiport", which causes issues on some platforms, to "iptables-allports".
-banaction = iptables-allports
 
-# "bantime" is the number of seconds that a host is banned.
-bantime  = 600
-
-# A host is banned if it has generated "maxretry" during the last "findtime"
-# seconds.
-findtime  = 600
-
-# "maxretry" is the number of failures before a host get banned.
-maxretry = 5
-
-# "ignoreip" can be an IP address, a CIDR mask or a DNS host. Fail2ban will not
-# ban a host which matches an address in this list. Several addresses can be
-# defined using space separator.
- 
-ignoreip = 127.0.0.1 172.16.0.0/12 192.168.0.0/16 10.0.0.0/8
-
-[ssh]
-
-enabled = false
-
-
-[nginx-badbots]
+[nginx-http-badbots]
 
 enabled  = false
-port     = http,https
-filter   = nginx-badbots
 logpath  = /remotelog/nginx/access.log
-maxretry = 2
 
 
-[nginx-botsearch]
+[nginx-http-botsearch]
 
 enabled  = false
-port     = http,https
-filter   = nginx-botsearch
 logpath  = /remotelog/nginx/access.log
 
 
 [nginx-http-418]
 
 enabled  = false
-port     = http,https
-filter   = nginx-http-418
 logpath  = /remotelog/nginx/access.log
-findtime = 3600
-maxretry = 10
 
 
 [nginx-http-auth]
 
 enabled  = false
-filter   = nginx-http-auth
-port     = http,https
 logpath  = /remotelog/nginx/error.log
 
 
-[nginx-deny]
+[nginx-http-deny]
 
 enabled  = false
-port     = http,https
-filter   = nginx-deny
 logpath  = /remotelog/nginx/error.log
 
 
 [emby-http-auth]
 
 enabled  = false
-port     = 8920
-filter   = emby-http-auth
 logpath  = /remotelog/emby/embyserver.txt
+
+
+[airsonic-http-auth]
+
+enabled  = false
+logpath  = /remotelog/airsonic/airsonic.log
