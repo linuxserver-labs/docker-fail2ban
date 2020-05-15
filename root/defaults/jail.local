@@ -23,41 +23,41 @@
 
 [nginx-http-badbots]
 
-enabled  = true
+enabled  = false
 logpath  = /remotelog/nginx/access.log
 
 
 [nginx-http-botsearch]
 
-enabled  = true
+enabled  = false
 logpath  = /remotelog/nginx/access.log
 
 
 [nginx-http-418]
 
-enabled  = true
+enabled  = false
 logpath  = /remotelog/nginx/access.log
 
 
 [nginx-http-auth]
 
-enabled  = true
+enabled  = false
 logpath  = /remotelog/nginx/error.log
 
 
 [nginx-http-deny]
 
-enabled  = true
+enabled  = false
 logpath  = /remotelog/nginx/error.log
 
 
 [emby-http-auth]
 
-enabled  = true
+enabled  = false
 logpath  = /remotelog/emby/embyserver.txt
 
 
 [airsonic-http-auth]
 
-enabled  = true
+enabled  = false
 logpath  = /remotelog/airsonic/airsonic.log
