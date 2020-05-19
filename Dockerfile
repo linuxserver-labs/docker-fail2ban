@@ -13,7 +13,8 @@ RUN \
  echo "**** install runtime packages ****" && \
  apk add --no-cache --upgrade \
     curl \
-    fail2ban && \
+    fail2ban \
+    fail2ban-doc && \
  echo "**** remove unnecessary fail2ban filters ****" && \
     rm \
     	/etc/fail2ban/jail.d/alpine-ssh.conf && \
