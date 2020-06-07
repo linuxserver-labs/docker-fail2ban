@@ -45,7 +45,7 @@ opt_param_env_vars:
 opt_param_usage_include_vols: false
 opt_param_usage_include_ports: false
 opt_param_device_map: false
-opt_cap_add_param: false
+opt_cap_add_param: true
 optional_block_1: false
 
 # application setup block
