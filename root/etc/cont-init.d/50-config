@@ -1,51 +1,15 @@
 #!/usr/bin/with-contenv bash
+# shellcheck shell=bash
 
-# Display variables for troubleshooting
-echo -e "Variables set:\\n\
-PUID=${PUID}\\n\
-PGID=${PGID}\\n\
-TZ=${TZ}\\n"
-
-# Echo init finish for test runs
-if [ -n "${TEST_RUN}" ]; then
-	echo '[services.d] done.'
-fi
-
-    # make our folders and links
 mkdir -p \
-  /config/{log/fail2ban,fail2ban,crontabs} \
-  /var/run/fail2ban
+  /config/{log/fail2ban,fail2ban/filter.d}
 
 # copy/update the fail2ban config defaults to/in /config
-cp -R /defaults/fail2ban/filter.d /config/fail2ban/
-cp -R /defaults/fail2ban/action.d /config/fail2ban/
-cp -R /defaults/fail2ban/jail.d /config/fail2ban/
-# if jail.local is missing in /config, copy default
-[[ ! -f /config/fail2ban/jail.local ]] && \
-  cp /defaults/jail.local /config/fail2ban/jail.local
-# Replace fail2ban config with user config
-[[ -d /etc/fail2ban/filter.d ]] && \
-  rm -rf /etc/fail2ban/filter.d
-[[ -d /etc/fail2ban/action.d ]] && \
-  rm -rf /etc/fail2ban/action.d
-[[ -d /etc/fail2ban/jail.d ]] && \
-  rm -rf /etc/fail2ban/jail.d
-cp -R /config/fail2ban/filter.d /etc/fail2ban/
-cp -R /config/fail2ban/action.d /etc/fail2ban/
-cp -R /config/fail2ban/jail.d /etc/fail2ban/
-cp /defaults/fail2ban/fail2ban.local /etc/fail2ban/
-cp /config/fail2ban/jail.local /etc/fail2ban/jail.local
+cp -nR /defaults/fail2ban /config
 
-# copy crontab if needed
-[[ ! -f /config/crontabs/root ]] && \
-  cp /etc/crontabs/root /config/crontabs/
+cp -nR /etc/fail2ban/filter.d/common.conf /config/fail2ban/filter.d/common.conf
 
-# import user crontabs
-rm /etc/crontabs/*
-cp /config/crontabs/* /etc/crontabs/
 
 # permissions
 chown -R abc:abc \
   /config
-chmod -R 0644 /etc/logrotate.d
-chmod -R +r /config/log

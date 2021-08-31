@@ -1,0 +1,17 @@
+name: Build Image On Release
+
+on:
+  release:
+    types: [published]
+  pull_request:
+
+jobs:
+  call-workflow:
+    uses: linuxserver-labs/docker-actions/.github/workflows/build-image.yml@v5
+    with:
+      repo_owner: ${{ github.repository_owner }}
+      app_name: fail2ban
+      release_type: alpine
+      release_name: fail2Ban
+    secrets:
+      scarf_token: ${{ secrets.SCARF_TOKEN }}

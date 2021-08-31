@@ -1,20 +1,18 @@
 ---
-
 # project information
 project_name: fail2ban
 project_url: "https://github.com/fail2ban/fail2ban"
 project_logo: "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/fail2ban-banner.png"
 project_blurb: "[{{ project_name|capitalize }}]({{ project_url }}) Fail2Ban can do many things but at its core it scans log files and bans IP addresses with too many failed login attempts by adding firewall rules to reject new connections from those IP addresses, for a configurable amount of time."
 
-
 project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
 project_blurb_optional_extras_enabled: false
 
 # supported architectures
 available_architectures:
-  - { arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
-  - { arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
-  - { arch: "{{ arch_armhf }}", tag: "arm32v7-latest"}
+  - { arch: "{{ arch_x86_64 }}", tag: "amd64-latest" }
+  - { arch: "{{ arch_arm64 }}", tag: "arm64v8-latest" }
+  - { arch: "{{ arch_armhf }}", tag: "arm32v7-latest" }
 
 # development version
 development_versions: true
@@ -28,12 +26,28 @@ param_container_name: "{{ project_name }}"
 param_usage_include_net: false
 param_usage_include_env: true
 param_env_vars:
-  - { env_var: "TZ", env_value: "Europe/London", desc: "Specify a timezone to use EG Europe/London." }
+  - {
+      env_var: "TZ",
+      env_value: "Europe/London",
+      desc: "Specify a timezone to use EG Europe/London.",
+    }
 param_usage_include_vols: true
 param_volumes:
-  - { vol_path: "/config", vol_host_path: "<path to data>", desc: "Where Fail2ban should store its config file." }
-  - { vol_path: "/remotelog/applicationX/applicationX.log", vol_host_path: "<path to applicationX.log>", desc: "Path to a specific named log file." }
-  - { vol_path: "/remotelog/applicationY/", vol_host_path: "<path to applicationY log directory>", desc: "Path to an application log directory with multiple logs." } 
+  - {
+      vol_path: "/config",
+      vol_host_path: "<path to data>",
+      desc: "Where Fail2ban should store its config file.",
+    }
+  - {
+      vol_path: "/remotelog/applicationX/applicationX.log",
+      vol_host_path: "<path to applicationX.log>",
+      desc: "Path to a specific named log file.",
+    }
+  - {
+      vol_path: "/remotelog/applicationY/",
+      vol_host_path: "<path to applicationY log directory>",
+      desc: "Path to an application log directory with multiple logs.",
+    }
 param_usage_include_ports: false
 param_ports:
 param_device_map: false
@@ -51,80 +65,78 @@ optional_block_1: false
 # application setup block
 app_setup_block_enabled: true
 app_setup_block: |
-  This docker specific implementation of fail2ban can read an arbitrary number of log files from other containers, monitor them for abuse as a single large entity
-  and apply IP bans that will protect ALL docker containers on the host but not the host itself.
- 
+  This docker specific implementation of fail2ban can read an arbitrary number of log files from other containers, monitor them for abuse as a single large entity and apply IP bans that will protect ALL docker containers on the host but not the host itself.
+
   To do this it takes advantage of the DOCKER-USER iptables chain that exists in all modern docker installs.
- 
+
   Note: Internal Docker iptables rules are added to the DOCKER chain which is separate to the DOCKER-USER chain and should never be manipulated directly by the user.
- 
+
   Since DOCKER-USER rules are applied before any rules Docker itself creates fail2ban blocks automatically apply to all local native and custom docker bridge networks without risking breaking docker itself.
- 
-  IMPORTANT: Both the DOCKER and DOCKER-USER chains are evaluated BEFORE the FORWARD chain. This is often overlooked by users who expected existing firewall restrictions to
-  apply to docker services which they do not resulting in the false assumption that services are protected and private when they are not.
- 
+
+  > IMPORTANT: Both the DOCKER and DOCKER-USER chains are evaluated BEFORE the FORWARD chain. This is often overlooked by users who expected existing firewall restrictions to apply to docker services which they do not resulting in the false assumption that services are protected and private when they are not.
+
   If none of this make sense to you don't worry you do not need to understand firewalling to make use of this container.
- 
+
   Fail2ban configuration can seem daunting at first but most of the complexity can be ignored for most users.
- 
+
   In simple terms Fail2ban has three steps with associated configuration files:
- 
-  filters. Think of these as a list of patterns used to match abuse in your log files.
-  jails. These are used to tell Fail2ban which log files match which filters and other basics such as how how many failed logins are allowed etc
-  actions. As the name suggests these define what actions Fail2ban takes when a jail is triggered. Typical users will never alter these.
- 
+
+  `filters` - Think of these as a list of patterns used to match abuse in your log files.
+  `jails` - These are used to tell Fail2ban which log files match which filters and other basics such as how how many failed logins are allowed etc
+  `actions` - As the name suggests these define what actions Fail2ban takes when a jail is triggered. Typical users will never alter these.
+
   Fail2ban continues this one step further with a system that can merge multiple configuration files into one. This is a fairly unusual methodology which can seem confusing at first but is a critical and powerful skill to learn.
- 
+
   This is best explained using an example:
- 
+
   If we ignore actions since almost all users will be happy with the "block IP action" we can concentrate on filters and jails.
- 
+
   Each jail is defined in a .conf file located in /config/fail2ban/jail.d/ so for example nginx-http-auth.conf with contents like:
- 
+
+  ```ini
   [nginx-http-auth]
 
   enabled  = false
   filter   = nginx-http-auth
   port     = http,https
   logpath  = /remotelog/nginx/error.log
- 
+  ```
+
   This file is relatively simple to understand but it is important you do not edit it directly. If you wish to alter this file you have two options:
- 
+
   1. Create a file called nginx-http-auth.local with just the changes you wish to make and the [] header. So for example if you wanted to enable this jail we
   could create a file called nginx-http-auth.local beside the existing nginx-http-auth.conf with contents of
- 
+
+  ```ini
   [nginx-http-auth]
 
   enabled  = true
- 
+  ```
+
   At load tile Fail2ban will read every .conf and .local and merge them internally resulting in this example of turning nginx-http-auth on.
- 
+
   2. Fail2ban also has a jail.conf file that contains global settings but it can also accept jail specific changes.
   As previously you should not edit a conf file so in this case we would create jail.local and enter the same two lines we changed in the previous nginx-http-auth.local example/
- 
+
   Which method is preferable? The choice is yours and both have merits but jail.local is probably easier at first. Should you wish to change later the effort to do so it relatively minimal.
- 
-  At this point you may be asking yourself why all this complication? Once you get used to the setup it soon becomes second nature and it allows lsio and the fail2ban project to push new
-  config files and changes such as security fixes without the risk of altering existing user changes.
- 
+
+  At this point you may be asking yourself why all this complication? Once you get used to the setup it soon becomes second nature and it allows lsio and the fail2ban project to push new config files and changes such as security fixes without the risk of altering existing user changes.
+
   So how do you actually turn on a jail? It is actually relatively simple.
- 
+
   Step 1: In docker volume mount the log file or folder of log files from the container to be protected into this one.
   Step 2: Find the filter that matches the application log type. Most are included by default and more are being added all the time.
   Step 3: Activate the jail using either the global jail.local or jail-specific.local as described above. Normally you only need to change two variables `enabled  = true` and the `logpath  = /match/your/volume/mount/from/step/1.log`
- 
-  For neatness we would recommend logs are mount read only using the convention of `/remotelog/containername/nativefilename.log`. So for example our Airsonic container would be:
- 
-  -v <path to containers>/airsonic/airsonic.log:/remotelog/airsonic/airsonic.log:ro
 
-  Once these three simple steps are taken restart fail2ban and protection should be in place. You can repeat this process to protect any number of containers and given how noisy the internet is in no time you will see
-  bad actors being banned.
- 
+  For neatness we would recommend logs are mount read only using the convention of `/remotelog/containername/nativefilename.log`. So for example our Airsonic container would be:
+
+  `-v <path to containers>/airsonic/airsonic.log:/remotelog/airsonic/airsonic.log:ro`
+
+  Once these three simple steps are taken restart fail2ban and protection should be in place. You can repeat this process to protect any number of containers and given how noisy the internet is in no time you will see bad actors being banned.
+
   Note: As a safety measure we ship this container with a default ignore list of all IANA private addresses to ensure you do not ban yourself or your LAN users by default. You can alter this using jail.local if you wish.
- 
 
 # changelog
 
 changelogs:
   - { date: "xx.xx.20:", desc: "Initial Release." }
-
