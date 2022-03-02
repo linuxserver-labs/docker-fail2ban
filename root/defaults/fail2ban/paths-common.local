@@ -1,0 +1,16 @@
+# Common
+#
+
+[INCLUDES]
+
+after  = paths-overrides.local
+
+[DEFAULT]
+
+default_backend     = %(default/backend)s
+
+remote_logs         = /remotelogs
+
+nginx_error_log     = /config/log/nginx/*error.log
+
+nginx_access_log    = /config/log/nginx/*access.log
