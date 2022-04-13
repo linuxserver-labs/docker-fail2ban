@@ -14,5 +14,6 @@ jobs:
       release_type: alpine
       release_name: fail2Ban
       release_url: "v3.14/main"
+      target_arch: "all"
     secrets:
       scarf_token: ${{ secrets.SCARF_TOKEN }}
