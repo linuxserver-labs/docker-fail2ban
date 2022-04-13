@@ -1,6 +1,0 @@
-{
-    "files.associations": {
-        "**/fail2ban/**/**.conf": "ini",
-        "**/fail2ban/**/**.local": "ini"
-    }
-}
