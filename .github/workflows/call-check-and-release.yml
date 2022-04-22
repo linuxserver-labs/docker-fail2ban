@@ -14,5 +14,6 @@ jobs:
       release_type: "alpine"
       release_url: "v3.14/main"
       release_name: "fail2ban"
+      branch: "master"
     secrets:
       repo_release_token: ${{ secrets.repo_release_token }}
