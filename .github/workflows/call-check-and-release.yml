@@ -7,12 +7,13 @@ on:
 
 jobs:
   call-workflow:
-    uses: linuxserver-labs/docker-actions/.github/workflows/check-and-release.yml@v2
+    uses: linuxserver-labs/docker-actions/.github/workflows/check-and-release.yml@v6
     with:
       repo_owner: ${{ github.repository_owner }}
       app_name: "fail2ban"
       release_type: "alpine"
       release_url: "v3.14/main"
       release_name: "fail2ban"
+      branch: "master"
     secrets:
       repo_release_token: ${{ secrets.repo_release_token }}

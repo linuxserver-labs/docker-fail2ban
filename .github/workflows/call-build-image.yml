@@ -7,11 +7,13 @@ on:
 
 jobs:
   call-workflow:
-    uses: linuxserver-labs/docker-actions/.github/workflows/build-image.yml@v5
+    uses: linuxserver-labs/docker-actions/.github/workflows/build-image.yml@v6
     with:
       repo_owner: ${{ github.repository_owner }}
       app_name: fail2ban
       release_type: alpine
       release_name: fail2Ban
+      release_url: "v3.14/main"
+      target-arch: "all"
     secrets:
       scarf_token: ${{ secrets.SCARF_TOKEN }}
