@@ -1,13 +1,13 @@
 /config/log/fail2ban/fail2ban.log {
-    weekly
-    rotate 7
-    compress
-    delaycompress
-    nodateext
-    su abc abc
-    missingok
-    notifempty
-    postrotate
-      /usr/bin/fail2ban-client flushlogs >/dev/null || true
-    endscript
+  weekly
+  rotate 7
+  compress
+  delaycompress
+  nodateext
+  su abc abc
+  missingok
+  notifempty
+  postrotate
+    /usr/bin/fail2ban-client flushlogs >/dev/null || true
+  endscript
 }
