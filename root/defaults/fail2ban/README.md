@@ -33,8 +33,8 @@ findtime = 4h
 # "maxretry" is the number of failures before a host get banned.
 maxretry = 5
 
-[unraid-ssh]
-# configuration inherits from jail.d/unraid-ssh.conf
+[unraid-sshd]
+# configuration inherits from jail.d/unraid-sshd.conf
 enabled  = true
 action   = %(known/action)s
            abuseipdb[abuseipdb_apikey="%(known/abuseipdb_apikey)s", abuseipdb_category="18,22"]
