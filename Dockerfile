@@ -14,7 +14,8 @@ RUN \
   apk add --no-cache --upgrade \
     curl \
     fail2ban \
-    fail2ban-doc && \
+    fail2ban-doc \
+    jq && \
   echo "**** cleanup ****" && \
   rm -rf \
       /root/.cache \
