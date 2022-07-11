@@ -12,7 +12,7 @@ For example, to adjust `jail.conf`, create `jail.local` and apply your customiza
 
 This example uses `apprise-api` for notifications, `cloudflare` for additional web proxy banning, and `abuseipdb` to report bad actors. You can remove any of these, or add more as you see fit.
 
-```yaml
+```ini
 [DEFAULT]
 # Prevents banning LAN subnets
 ignoreip = 127.0.0.1/8 ::1
