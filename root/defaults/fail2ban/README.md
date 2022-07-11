@@ -14,6 +14,12 @@ This example uses `apprise-api` for notifications, `cloudflare` for additional w
 
 ```yaml
 [DEFAULT]
+# Prevents banning LAN subnets
+ignoreip = 127.0.0.1/8 ::1
+           10.0.0.0/8
+           172.16.0.0/12
+           192.168.0.0/16
+
 # Change the default ban action from "iptables-multiport", which causes issues on some platforms, to "iptables-allports".
 #banaction = %(banaction_allports)s
 
@@ -24,30 +30,21 @@ action = %(action_)s
 
 abuseipdb_apikey = YOUR-API-KEY
 
-# "bantime" is the number of seconds that a host is banned.
-bantime = 4h
-
-# A host is banned if it has generated "maxretry" during the last "findtime" seconds.
-findtime = 4h
-
-# "maxretry" is the number of failures before a host get banned.
-maxretry = 5
-
 [unraid-sshd]
 # configuration inherits from jail.d/unraid-sshd.conf
 enabled  = true
 action   = %(known/action)s
            abuseipdb[abuseipdb_apikey="%(known/abuseipdb_apikey)s", abuseipdb_category="18,22"]
 
-[unraid-webgui]
-# configuration inherits from jail.d/unraid-webgui.conf
+[unraid-webgui-auth]
+# configuration inherits from jail.d/unraid-webgui-auth.conf
 enabled  = true
 port     = http,https,YOUR-UNRAID-MY-SERVERS-WAN-PORT
 action   = %(known/action)s
            abuseipdb[abuseipdb_apikey="%(known/abuseipdb_apikey)s", abuseipdb_category="18,21"]
 
-[unifi-controller]
-# configuration inherits from jail.d/unifi-controller.conf
+[unifi-controller-auth]
+# configuration inherits from jail.d/unifi-controller-auth.conf
 enabled  = true
 action   = %(known/action)s
            abuseipdb[abuseipdb_apikey="%(known/abuseipdb_apikey)s", abuseipdb_category="18,21"]
