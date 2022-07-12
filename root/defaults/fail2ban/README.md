@@ -14,6 +14,12 @@ This example uses `apprise-api` for notifications, `cloudflare` for additional w
 
 ```ini
 [DEFAULT]
+# Prevents banning LAN subnets
+ignoreip = 127.0.0.1/8 ::1
+           10.0.0.0/8
+           172.16.0.0/12
+           192.168.0.0/16
+
 # Change the default ban action from "iptables-multiport", which causes issues on some platforms, to "iptables-allports".
 #banaction = %(banaction_allports)s
 
