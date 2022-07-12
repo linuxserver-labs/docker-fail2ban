@@ -36,8 +36,8 @@ enabled  = true
 action   = %(known/action)s
            abuseipdb[abuseipdb_apikey="%(known/abuseipdb_apikey)s", abuseipdb_category="18,22"]
 
-[unraid-webgui-auth]
-# configuration inherits from jail.d/unraid-webgui-auth.conf
+[unraid-webgui]
+# configuration inherits from jail.d/unraid-webgui.conf
 enabled  = true
 port     = http,https,YOUR-UNRAID-MY-SERVERS-WAN-PORT
 action   = %(known/action)s
