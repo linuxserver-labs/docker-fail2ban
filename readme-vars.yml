@@ -1,0 +1,66 @@
+---
+
+# project information
+project_name: fail2ban
+project_url: "http://www.fail2ban.org/"
+project_logo: "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/fail2ban.png"
+project_blurb: |
+  [{{ project_name|capitalize }}]({{ project_url }}) is a daemon to ban hosts that cause multiple authentication errors.
+
+project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
+
+# supported architectures
+available_architectures:
+  - { arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
+  - { arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
+  - { arch: "{{ arch_armhf }}", tag: "arm32v7-latest"}
+
+# container parameters
+common_param_env_vars_enabled: true
+param_container_name: "{{ project_name }}"
+param_net: "host"
+param_net_desc: "Shares host networking with container."
+param_usage_include_env: true
+param_env_vars:
+  - { env_var: "TZ", env_value: "America/New_York", desc: "Specify a timezone to use EG America/New_York"}
+param_usage_include_vols: true
+param_volumes:
+  - { vol_path: "/config", vol_host_path: "/path/to/appdata/config", desc: "Contains all relevant configuration files." }
+  - { vol_path: "/var/log:ro", vol_host_path: "/var/log", desc: "Host logs. Mounted as Read Only." }
+cap_add_param: false
+cap_add_param_vars:
+  - { cap_add_var: "NET_ADMIN" }
+  - { cap_add_var: "NET_RAW" }
+
+# optional parameters
+opt_param_usage_include_vols: true
+opt_param_volumes:
+  - { vol_path: "/remotelogs/airsonic/airsonic.log:ro", vol_host_path: "/path/to/airsonic/airsonic.log", desc: "Path to airsonic log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/apache2:ro", vol_host_path: "/path/to/apache2/log", desc: "Path to apache2 log folder. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/audit/audit.log:ro", vol_host_path: "/path/to/audit/audit.log", desc: "Path to auditd log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/authelia/authelia.log:ro", vol_host_path: "/path/to/authelia/authelia.log", desc: "Path to authelia log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/emby/embyserver.txt:ro", vol_host_path: "/path/to/emby/embyserver.txt", desc: "Path to emby log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/exim/mainlog:ro", vol_host_path: "/path/to/exim/mainlog", desc: "Path to exim log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/filebrowser/filebrowser.log:ro", vol_host_path: "/path/to/filebrowser/filebrowser.log", desc: "Path to filebrowser log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/gitea/gitea.log:ro", vol_host_path: "/path/to/gitea/gitea.log", desc: "Path to gitea log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/homeassistant/home-assistant.log:ro", vol_host_path: "/path/to/homeassistant/home-assistant.log", desc: "Path to homeassistant log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/lighttpd/error.log:ro", vol_host_path: "/path/to/lighttpd/error.log", desc: "Path to lighttpd error log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/nginx:ro", vol_host_path: "/path/to/nginx/log", desc: "Path to nginx log folder. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/nzbget:ro", vol_host_path: "/path/to/nzbget.log", desc: "Path to nzbget log folder. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/overseerr/overseerr.log:ro", vol_host_path: "/path/to/overseerr/overseerr.log", desc: "Path to overseerr log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/prowlarr/prowlarr.txt:ro", vol_host_path: "/path/to/prowlarr/prowlarr.txt", desc: "Path to prowlarr log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/radarr/radarr.txt:ro", vol_host_path: "/path/to/radarr/radarr.txt", desc: "Path to radarr log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/roundcube/errors:ro", vol_host_path: "/path/to/roundcube/errors", desc: "Path to roundcube error log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/sonarr/sonarr.txt:ro", vol_host_path: "/path/to/sonarr/sonarr.txt", desc: "Path to sonarr log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/unificontroller/server.log:ro", vol_host_path: "/path/to/unificontroller/server.log", desc: "Path to unificontroller server log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/vaultwarden/vaultwarden.log:ro", vol_host_path: "/path/to/vaultwarden/vaultwarden.log", desc: "Path to vaultwarden log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/vsftpd.log:ro", vol_host_path: "/path/to/vsftpd.log", desc: "Path to vsftpd log file. Mounted as Read Only." }
+
+# application setup block
+app_setup_block_enabled: true
+app_setup_block: |
+  App Setup Info
+
+# changelog
+changelogs:
+  - { date: "01.08.22:", desc: "Initial Release." }

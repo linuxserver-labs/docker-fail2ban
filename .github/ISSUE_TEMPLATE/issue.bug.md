@@ -4,7 +4,7 @@ about: Create a report to help us improve
 
 ---
 [linuxserverurl]: https://linuxserver.io
-[![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/lsio-labs-wide.png)](https://linuxserver.io)
+[![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)][linuxserverurl]
 
 <!--- If you are new to Docker or this application our issue tracker is **ONLY** used for reporting bugs or requesting features. Please use [our discord server](https://discord.gg/YWrKVTn) for general support. --->
 
@@ -37,4 +37,4 @@ about: Create a report to help us improve
 <!--- Provide your docker create/run command or compose yaml snippet, or a screenshot of settings if using a gui to create the container -->
 
 ## Docker logs
-<!--- Provide a full docker log, output of "docker logs your_spotify" -->
+<!--- Provide a full docker log, output of "docker logs fail2ban" -->

@@ -1,7 +1,8 @@
 <!--- Provide a general summary of your changes in the Title above -->
 
 [linuxserverurl]: https://linuxserver.io
-[![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/lsio-labs-wide.png)](https://linuxserver.io)
+[![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)][linuxserverurl]
+
 
 <!--- Before submitting a pull request please check the following -->
 
@@ -11,6 +12,7 @@
 <!---  You have included links to any files / patches etc your PR may be using in the body of the PR commit message -->
 <!--- We maintain a changelog of major revisions to the container at the end of readme-vars.yml in the root of this repository, please add your changes there if appropriate -->
 
+
 <!--- Coding guidelines: -->
 <!--- 1. Installed packages in the Dockerfiles should be in alphabetical order -->
 <!--- 2. Changes to Dockerfile should be replicated in Dockerfile.armhf and Dockerfile.aarch64 if applicable -->
@@ -19,7 +21,7 @@
 
 ------------------------------
 
- - [ ] I have read the [contributing](https://github.com/linuxserver-labs/docker-fail2ban/blob/main/.github/CONTRIBUTING.md) guideline and understand that I have made the correct modifications
+ - [ ] I have read the [contributing](https://github.com/linuxserver/docker-fail2ban/blob/master/.github/CONTRIBUTING.md) guideline and understand that I have made the correct modifications
 
 ------------------------------
 
@@ -35,6 +37,7 @@
 <!--- Please describe in detail how you tested your changes. -->
 <!--- Include details of your testing environment, and the tests you ran to -->
 <!--- see how your change affects other areas of the code, etc. -->
+
 
 ## Source / References:
 <!--- Please include any forum posts/github links relevant to the PR -->
