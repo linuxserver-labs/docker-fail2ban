@@ -93,11 +93,12 @@ services:
       - /path/to/homeassistant/home-assistant.log:/remotelogs/homeassistant/home-assistant.log:ro #optional
       - /path/to/lighttpd/error.log:/remotelogs/lighttpd/error.log:ro #optional
       - /path/to/nginx/log:/remotelogs/nginx:ro #optional
-      - /path/to/nzbget.log:/remotelogs/nzbget:ro #optional
+      - /path/to/nzbget/log:/remotelogs/nzbget:ro #optional
       - /path/to/overseerr/overseerr.log:/remotelogs/overseerr/overseerr.log:ro #optional
       - /path/to/prowlarr/prowlarr.txt:/remotelogs/prowlarr/prowlarr.txt:ro #optional
       - /path/to/radarr/radarr.txt:/remotelogs/radarr/radarr.txt:ro #optional
       - /path/to/roundcube/errors:/remotelogs/roundcube/errors:ro #optional
+      - /path/to/sabnzbd/log:/remotelogs/sabnzbd:ro #optional
       - /path/to/sonarr/sonarr.txt:/remotelogs/sonarr/sonarr.txt:ro #optional
       - /path/to/unificontroller/server.log:/remotelogs/unificontroller/server.log:ro #optional
       - /path/to/vaultwarden/vaultwarden.log:/remotelogs/vaultwarden/vaultwarden.log:ro #optional
@@ -126,11 +127,12 @@ docker run -d \
   -v /path/to/homeassistant/home-assistant.log:/remotelogs/homeassistant/home-assistant.log:ro `#optional` \
   -v /path/to/lighttpd/error.log:/remotelogs/lighttpd/error.log:ro `#optional` \
   -v /path/to/nginx/log:/remotelogs/nginx:ro `#optional` \
-  -v /path/to/nzbget.log:/remotelogs/nzbget:ro `#optional` \
+  -v /path/to/nzbget/log:/remotelogs/nzbget:ro `#optional` \
   -v /path/to/overseerr/overseerr.log:/remotelogs/overseerr/overseerr.log:ro `#optional` \
   -v /path/to/prowlarr/prowlarr.txt:/remotelogs/prowlarr/prowlarr.txt:ro `#optional` \
   -v /path/to/radarr/radarr.txt:/remotelogs/radarr/radarr.txt:ro `#optional` \
   -v /path/to/roundcube/errors:/remotelogs/roundcube/errors:ro `#optional` \
+  -v /path/to/sabnzbd/log:/remotelogs/sabnzbd:ro `#optional` \
   -v /path/to/sonarr/sonarr.txt:/remotelogs/sonarr/sonarr.txt:ro `#optional` \
   -v /path/to/unificontroller/server.log:/remotelogs/unificontroller/server.log:ro `#optional` \
   -v /path/to/vaultwarden/vaultwarden.log:/remotelogs/vaultwarden/vaultwarden.log:ro `#optional` \
@@ -166,6 +168,7 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-v /remotelogs/prowlarr/prowlarr.txt:ro` | Path to prowlarr log file. Mounted as Read Only. |
 | `-v /remotelogs/radarr/radarr.txt:ro` | Path to radarr log file. Mounted as Read Only. |
 | `-v /remotelogs/roundcube/errors:ro` | Path to roundcube error log file. Mounted as Read Only. |
+| `-v /remotelogs/sabnzbd:ro` | Path to nzbget log folder. Mounted as Read Only. |
 | `-v /remotelogs/sonarr/sonarr.txt:ro` | Path to sonarr log file. Mounted as Read Only. |
 | `-v /remotelogs/unificontroller/server.log:ro` | Path to unificontroller server log file. Mounted as Read Only. |
 | `-v /remotelogs/vaultwarden/vaultwarden.log:ro` | Path to vaultwarden log file. Mounted as Read Only. |
