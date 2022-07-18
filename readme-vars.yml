@@ -3,7 +3,7 @@
 # project information
 project_name: fail2ban
 project_url: "http://www.fail2ban.org/"
-project_logo: "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/fail2ban.png"
+project_logo: "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/fail2ban-logo.png"
 project_blurb: |
   [{{ project_name|capitalize }}]({{ project_url }}) is a daemon to ban hosts that cause multiple authentication errors.
 
@@ -35,33 +35,53 @@ cap_add_param_vars:
 # optional parameters
 opt_param_usage_include_vols: true
 opt_param_volumes:
-  - { vol_path: "/remotelogs/airsonic/airsonic.log:ro", vol_host_path: "/path/to/airsonic/airsonic.log", desc: "Path to airsonic log file. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/apache2:ro", vol_host_path: "/path/to/apache2/log", desc: "Path to apache2 log folder. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/audit/audit.log:ro", vol_host_path: "/path/to/audit/audit.log", desc: "Path to auditd log file. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/authelia/authelia.log:ro", vol_host_path: "/path/to/authelia/authelia.log", desc: "Path to authelia log file. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/emby/embyserver.txt:ro", vol_host_path: "/path/to/emby/embyserver.txt", desc: "Path to emby log file. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/exim/mainlog:ro", vol_host_path: "/path/to/exim/mainlog", desc: "Path to exim log file. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/filebrowser/filebrowser.log:ro", vol_host_path: "/path/to/filebrowser/filebrowser.log", desc: "Path to filebrowser log file. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/gitea/gitea.log:ro", vol_host_path: "/path/to/gitea/gitea.log", desc: "Path to gitea log file. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/homeassistant/home-assistant.log:ro", vol_host_path: "/path/to/homeassistant/home-assistant.log", desc: "Path to homeassistant log file. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/lighttpd/error.log:ro", vol_host_path: "/path/to/lighttpd/error.log", desc: "Path to lighttpd error log file. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/nextcloud/nextcloud.log:ro", vol_host_path: "/path/to/nextcloud/nextcloud.log", desc: "Path to nextcloud log file. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/nginx:ro", vol_host_path: "/path/to/nginx/log", desc: "Path to nginx log folder. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/nzbget/nzbget.log:ro", vol_host_path: "/path/to/nzbget/nzbget.log", desc: "Path to nzbget log file. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/overseerr/overseerr.log:ro", vol_host_path: "/path/to/overseerr/overseerr.log", desc: "Path to overseerr log file. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/prowlarr/prowlarr.txt:ro", vol_host_path: "/path/to/prowlarr/prowlarr.txt", desc: "Path to prowlarr log file. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/radarr/radarr.txt:ro", vol_host_path: "/path/to/radarr/radarr.txt", desc: "Path to radarr log file. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/roundcube/errors:ro", vol_host_path: "/path/to/roundcube/errors", desc: "Path to roundcube error log file. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/sabnzbd/sabnzbd.log:ro", vol_host_path: "/path/to/sabnzbd/sabnzbd.log", desc: "Path to sabnzbd log file. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/sonarr/sonarr.txt:ro", vol_host_path: "/path/to/sonarr/sonarr.txt", desc: "Path to sonarr log file. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/unificontroller/server.log:ro", vol_host_path: "/path/to/unificontroller/server.log", desc: "Path to unificontroller server log file. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/vaultwarden/vaultwarden.log:ro", vol_host_path: "/path/to/vaultwarden/vaultwarden.log", desc: "Path to vaultwarden log file. Mounted as Read Only." }
-  - { vol_path: "/remotelogs/vsftpd/vsftpd.log:ro", vol_host_path: "/path/to/vsftpd/vsftpd.log", desc: "Path to vsftpd log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/airsonic/airsonic.log:ro", vol_host_path: "/path/to/airsonic/airsonic.log", desc: "Optional path to airsonic log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/apache2:ro", vol_host_path: "/path/to/apache2/log", desc: "Optional path to apache2 log folder. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/audit/audit.log:ro", vol_host_path: "/path/to/audit/audit.log", desc: "Optional path to auditd log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/authelia/authelia.log:ro", vol_host_path: "/path/to/authelia/authelia.log", desc: "Optional path to authelia log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/emby/embyserver.txt:ro", vol_host_path: "/path/to/emby/embyserver.txt", desc: "Optional path to emby log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/exim/mainlog:ro", vol_host_path: "/path/to/exim/mainlog", desc: "Optional path to exim log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/filebrowser/filebrowser.log:ro", vol_host_path: "/path/to/filebrowser/filebrowser.log", desc: "Optional path to filebrowser log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/gitea/gitea.log:ro", vol_host_path: "/path/to/gitea/gitea.log", desc: "Optional path to gitea log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/homeassistant/home-assistant.log:ro", vol_host_path: "/path/to/homeassistant/home-assistant.log", desc: "Optional path to homeassistant log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/lighttpd/error.log:ro", vol_host_path: "/path/to/lighttpd/error.log", desc: "Optional path to lighttpd error log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/nextcloud/nextcloud.log:ro", vol_host_path: "/path/to/nextcloud/nextcloud.log", desc: "Optional path to nextcloud log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/nginx:ro", vol_host_path: "/path/to/nginx/log", desc: "Optional path to nginx log folder. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/nzbget/nzbget.log:ro", vol_host_path: "/path/to/nzbget/nzbget.log", desc: "Optional path to nzbget log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/overseerr/overseerr.log:ro", vol_host_path: "/path/to/overseerr/overseerr.log", desc: "Optional path to overseerr log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/prowlarr/prowlarr.txt:ro", vol_host_path: "/path/to/prowlarr/prowlarr.txt", desc: "Optional path to prowlarr log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/radarr/radarr.txt:ro", vol_host_path: "/path/to/radarr/radarr.txt", desc: "Optional path to radarr log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/roundcube/errors:ro", vol_host_path: "/path/to/roundcube/errors", desc: "Optional path to roundcube error log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/sabnzbd/sabnzbd.log:ro", vol_host_path: "/path/to/sabnzbd/sabnzbd.log", desc: "Optional path to sabnzbd log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/sonarr/sonarr.txt:ro", vol_host_path: "/path/to/sonarr/sonarr.txt", desc: "Optional path to sonarr log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/unificontroller/server.log:ro", vol_host_path: "/path/to/unificontroller/server.log", desc: "Optional path to unificontroller server log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/vaultwarden/vaultwarden.log:ro", vol_host_path: "/path/to/vaultwarden/vaultwarden.log", desc: "Optional path to vaultwarden log file. Mounted as Read Only." }
+  - { vol_path: "/remotelogs/vsftpd/vsftpd.log:ro", vol_host_path: "/path/to/vsftpd/vsftpd.log", desc: "Optional path to vsftpd log file. Mounted as Read Only." }
 
 # application setup block
 app_setup_block_enabled: true
 app_setup_block: |
-  App Setup Info
+  ### Configuration Files
+
+  On first run, the container will create a number of folders and files in `/config`. The default configurations for fail2ban are all disabled by default.
+
+  Please refer to the [Configuration README](https://github.com/linuxserver/docker-fail2ban/blob/master/root/defaults/fail2ban/README.md), which can be viewed in our repository, or in your config folder at `/config/fail2ban/README.md`.
+
+  ### Chains
+
+  Chains affect how access is restricted. There are two primary ways to restrict access.
+
+  #### `DOCKER-USER`
+
+  The `DOCKER-USER` chain is used to restrict access to applications running in Docker containers. This will restrict access to all containers, not just the one that the jail is configured for.
+
+  #### `INPUT`
+
+  The `INPUT` chain is used to restrict access to applications running on the host. This will restrict access to the host network stack. The host network stack may not be inclusive of all Docker network stacks, thus the `DOCKER-USER` chain is used separately for applications running in Docker containers.
+
+  #### `FORWARD` (for older versions of Docker)
+
+  The `FORWARD` chain may be used on systems running older versions of Docker where the `DOCKER-USER` chain is not available.
 
 # changelog
 changelogs:

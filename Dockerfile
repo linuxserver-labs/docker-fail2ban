@@ -15,7 +15,8 @@ RUN \
     curl \
     fail2ban \
     fail2ban-doc \
-    jq && \
+    jq \
+    nftables && \
   echo "**** cleanup ****" && \
   rm -rf \
       /root/.cache \

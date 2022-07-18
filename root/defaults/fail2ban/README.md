@@ -14,6 +14,27 @@ This example uses `apprise-api` for notifications, `cloudflare` for additional w
 
 ```ini
 [DEFAULT]
+
+# "bantime.increment" allows to use database for searching of previously banned ip's to increase a
+# default ban time
+bantime.increment = true
+
+# "bantime.maxtime" is the max number of seconds using the ban time can reach (doesn't grow further)
+bantime.maxtime = 5w
+
+# "bantime.factor" is a coefficient to calculate exponent growing of the formula or common multiplier
+bantime.factor = 24
+
+# "bantime" is the number of seconds that a host is banned.
+bantime  = 1h
+
+# A host is banned if it has generated "maxretry" during the last "findtime"
+# seconds.
+findtime  = 24h
+
+# "maxretry" is the number of failures before a host get banned.
+maxretry = 5
+
 # Prevents banning LAN subnets
 ignoreip = 127.0.0.1/8 ::1
            10.0.0.0/8

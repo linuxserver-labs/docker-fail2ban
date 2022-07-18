@@ -42,7 +42,7 @@ Find us at:
 
 [Fail2ban](http://www.fail2ban.org/) is a daemon to ban hosts that cause multiple authentication errors.
 
-[![fail2ban](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/fail2ban.png)](http://www.fail2ban.org/)
+[![fail2ban](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/fail2ban-logo.png)](http://www.fail2ban.org/)
 
 ## Supported Architectures
 
@@ -60,7 +60,27 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-App Setup Info
+### Configuration Files
+
+On first run, the container will create a number of folders and files in `/config`. The default configurations for fail2ban are all disabled by default.
+
+Please refer to the [Configuration README](https://github.com/linuxserver/docker-fail2ban/blob/master/root/defaults/fail2ban/README.md), which can be viewed in our repository, or in your config folder at `/config/fail2ban/README.md`.
+
+### Chains
+
+Chains affect how access is restricted. There are two primary ways to restrict access.
+
+#### `DOCKER-USER`
+
+The `DOCKER-USER` chain is used to restrict access to applications running in Docker containers. This will restrict access to all containers, not just the one that the jail is configured for.
+
+#### `INPUT`
+
+The `INPUT` chain is used to restrict access to applications running on the host. This will restrict access to the host network stack. The host network stack may not be inclusive of all Docker network stacks, thus the `DOCKER-USER` chain is used separately for applications running in Docker containers.
+
+#### `FORWARD` (for older versions of Docker)
+
+The `FORWARD` chain may be used on systems running older versions of Docker where the `DOCKER-USER` chain is not available.
 
 ## Usage
 
@@ -154,28 +174,28 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e TZ=America/New_York` | Specify a timezone to use EG America/New_York |
 | `-v /config` | Contains all relevant configuration files. |
 | `-v /var/log:ro` | Host logs. Mounted as Read Only. |
-| `-v /remotelogs/airsonic/airsonic.log:ro` | Path to airsonic log file. Mounted as Read Only. |
-| `-v /remotelogs/apache2:ro` | Path to apache2 log folder. Mounted as Read Only. |
-| `-v /remotelogs/audit/audit.log:ro` | Path to auditd log file. Mounted as Read Only. |
-| `-v /remotelogs/authelia/authelia.log:ro` | Path to authelia log file. Mounted as Read Only. |
-| `-v /remotelogs/emby/embyserver.txt:ro` | Path to emby log file. Mounted as Read Only. |
-| `-v /remotelogs/exim/mainlog:ro` | Path to exim log file. Mounted as Read Only. |
-| `-v /remotelogs/filebrowser/filebrowser.log:ro` | Path to filebrowser log file. Mounted as Read Only. |
-| `-v /remotelogs/gitea/gitea.log:ro` | Path to gitea log file. Mounted as Read Only. |
-| `-v /remotelogs/homeassistant/home-assistant.log:ro` | Path to homeassistant log file. Mounted as Read Only. |
-| `-v /remotelogs/lighttpd/error.log:ro` | Path to lighttpd error log file. Mounted as Read Only. |
-| `-v /remotelogs/nextcloud/nextcloud.log:ro` | Path to nextcloud log file. Mounted as Read Only. |
-| `-v /remotelogs/nginx:ro` | Path to nginx log folder. Mounted as Read Only. |
-| `-v /remotelogs/nzbget/nzbget.log:ro` | Path to nzbget log file. Mounted as Read Only. |
-| `-v /remotelogs/overseerr/overseerr.log:ro` | Path to overseerr log file. Mounted as Read Only. |
-| `-v /remotelogs/prowlarr/prowlarr.txt:ro` | Path to prowlarr log file. Mounted as Read Only. |
-| `-v /remotelogs/radarr/radarr.txt:ro` | Path to radarr log file. Mounted as Read Only. |
-| `-v /remotelogs/roundcube/errors:ro` | Path to roundcube error log file. Mounted as Read Only. |
-| `-v /remotelogs/sabnzbd/sabnzbd.log:ro` | Path to sabnzbd log file. Mounted as Read Only. |
-| `-v /remotelogs/sonarr/sonarr.txt:ro` | Path to sonarr log file. Mounted as Read Only. |
-| `-v /remotelogs/unificontroller/server.log:ro` | Path to unificontroller server log file. Mounted as Read Only. |
-| `-v /remotelogs/vaultwarden/vaultwarden.log:ro` | Path to vaultwarden log file. Mounted as Read Only. |
-| `-v /remotelogs/vsftpd/vsftpd.log:ro` | Path to vsftpd log file. Mounted as Read Only. |
+| `-v /remotelogs/airsonic/airsonic.log:ro` | Optional path to airsonic log file. Mounted as Read Only. |
+| `-v /remotelogs/apache2:ro` | Optional path to apache2 log folder. Mounted as Read Only. |
+| `-v /remotelogs/audit/audit.log:ro` | Optional path to auditd log file. Mounted as Read Only. |
+| `-v /remotelogs/authelia/authelia.log:ro` | Optional path to authelia log file. Mounted as Read Only. |
+| `-v /remotelogs/emby/embyserver.txt:ro` | Optional path to emby log file. Mounted as Read Only. |
+| `-v /remotelogs/exim/mainlog:ro` | Optional path to exim log file. Mounted as Read Only. |
+| `-v /remotelogs/filebrowser/filebrowser.log:ro` | Optional path to filebrowser log file. Mounted as Read Only. |
+| `-v /remotelogs/gitea/gitea.log:ro` | Optional path to gitea log file. Mounted as Read Only. |
+| `-v /remotelogs/homeassistant/home-assistant.log:ro` | Optional path to homeassistant log file. Mounted as Read Only. |
+| `-v /remotelogs/lighttpd/error.log:ro` | Optional path to lighttpd error log file. Mounted as Read Only. |
+| `-v /remotelogs/nextcloud/nextcloud.log:ro` | Optional path to nextcloud log file. Mounted as Read Only. |
+| `-v /remotelogs/nginx:ro` | Optional path to nginx log folder. Mounted as Read Only. |
+| `-v /remotelogs/nzbget/nzbget.log:ro` | Optional path to nzbget log file. Mounted as Read Only. |
+| `-v /remotelogs/overseerr/overseerr.log:ro` | Optional path to overseerr log file. Mounted as Read Only. |
+| `-v /remotelogs/prowlarr/prowlarr.txt:ro` | Optional path to prowlarr log file. Mounted as Read Only. |
+| `-v /remotelogs/radarr/radarr.txt:ro` | Optional path to radarr log file. Mounted as Read Only. |
+| `-v /remotelogs/roundcube/errors:ro` | Optional path to roundcube error log file. Mounted as Read Only. |
+| `-v /remotelogs/sabnzbd/sabnzbd.log:ro` | Optional path to sabnzbd log file. Mounted as Read Only. |
+| `-v /remotelogs/sonarr/sonarr.txt:ro` | Optional path to sonarr log file. Mounted as Read Only. |
+| `-v /remotelogs/unificontroller/server.log:ro` | Optional path to unificontroller server log file. Mounted as Read Only. |
+| `-v /remotelogs/vaultwarden/vaultwarden.log:ro` | Optional path to vaultwarden log file. Mounted as Read Only. |
+| `-v /remotelogs/vsftpd/vsftpd.log:ro` | Optional path to vsftpd log file. Mounted as Read Only. |
 
 ## Environment variables from files (Docker secrets)
 
