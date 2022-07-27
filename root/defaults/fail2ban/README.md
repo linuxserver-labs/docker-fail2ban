@@ -70,3 +70,30 @@ enabled  = true
 action   = %(known/action)s
            abuseipdb[abuseipdb_apikey="%(known/abuseipdb_apikey)s", abuseipdb_category="18,21"]
 ```
+
+## Enabling/Customizing jails
+
+You can enable any of the pre-made jails by reviewing `jail.conf` and the files in `jail.d/` and adding a few lines to your `jail.local` to enable the jail.
+
+```ini
+[unifi-controller-auth]
+# configuration inherits from jail.d/unifi-controller-auth.conf
+enabled  = true
+```
+
+You can customize additional aspects about the jail by adding them to your `jail.local` file.
+
+```ini
+[unifi-controller-auth]
+# configuration inherits from jail.d/unifi-controller-auth.conf
+enabled  = true
+
+# If you are running the unifi-controller on your host (not in a docker container) you can change the chain to INPUT
+chain    = INPUT
+
+# If your log file is mounted to a different location inside the container, you can specify the path that the container will see your log file
+logpath  = /path/to/unificontroller/server.log
+
+# If you are using different ports for your unifi-controller, you can specify the ports you use
+port     = 8081,8442
+```
